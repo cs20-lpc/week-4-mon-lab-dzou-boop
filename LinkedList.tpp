@@ -9,17 +9,33 @@ LinkedList<T>::~LinkedList() {
 
 template <typename T>
 void LinkedList<T>::append(const T& elem) {
-    // TODO
+    if (head == nullptr) {
+        head = &Node(elem);
+    } else {
+        Node* current = head;
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+        current->next = &Node(elem);
+    }
 }
 
 template <typename T>
 void LinkedList<T>::clear() {
-    // TODO
+    head = nullptr;
 }
 
 template <typename T>
 T LinkedList<T>::getElement(int position) const {
-    // TODO
+    if (position>=0 && position<length) {
+        Node* current = head;
+        for (int i = 0; i < position; i++) {
+            current = current->next;
+        }
+        return current.value;
+    } else {
+        throw string("Out of bounds");
+    }
 }
 
 template <typename T>
@@ -34,7 +50,15 @@ bool LinkedList<T>::isEmpty() const {
 
 template <typename T>
 void LinkedList<T>::replace(int position, const T& elem) {
-    // TODO
+ if (position>=0 && position<length) {
+        Node* current = head;
+        for (int i = 0; i < position; i++) {
+            current = current->next;
+        }
+        current->value = elem;
+    } else {
+        throw string("Out of bounds");
+    }
 }
 
 template <typename T>
