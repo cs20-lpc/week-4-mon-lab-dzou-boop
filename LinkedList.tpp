@@ -11,12 +11,14 @@ template <typename T>
 void LinkedList<T>::append(const T& elem) {
     if (head == nullptr) {
         head = new Node(elem);
+        this->length++;
     } else {
         Node* current = head;
         while (current->next != nullptr) {
             current = current->next;
         }
         current->next = new Node(elem);
+        this->length++;
     }
 }
 
